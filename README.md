@@ -14,11 +14,13 @@ Variable| Example    | Description
 STACKROX_CENTRAL_HOST | central.my.tld | the address of the stackrox/acs server
 ROX_API_TOKEN | A_SECRET | this API token with read/write to registry [per documentaton](https://docs.openshift.com/acs/3.73/integration/integrate-with-ci-systems.html#integrate-circle-ci_integrate-with-ci-systems)
 
-To turn it on please place the following in your `.gitlab-ci.yml`
+To turn it on please place the following in your `.gitlab-ci.yml` in the include stanza and make sure you have a stage for test
 
 ```yaml
-  - project: 'https://github.com/paulbadcock/gitlab-pipeline.git'
-    ref: main
-    file: 'acs-scanner.yml' # RedHat Advanced Cluster Security compliance
+stages:
+  - test
+
+include:
+  - remote: 'https://github.com/paulbadcock/gitlab-pipeline/raw/main/acs-scanner.yml' # ACS Scanner
 ```
 
