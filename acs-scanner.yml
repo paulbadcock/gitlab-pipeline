@@ -1,0 +1,12 @@
+# RedHat Advanced Cluster Security
+#   This scanner allows compliance to be driven from ACS
+acs_scanner:
+  image:
+    name: registry.redhat.io/advanced-cluster-security/rhacs-roxctl-rhel8:3.73.1
+    entrypoint: [""] 
+  variables:
+    STACKROX_CENTRAL_HOST: ""
+    ROX_API_TOKEN: ""
+  stage: test
+  script:
+    - roxctl image check --endpoint "$STACKROX_CENTRAL_HOST:443" --image "$CONTAINER_BUILD_IMAGE"
