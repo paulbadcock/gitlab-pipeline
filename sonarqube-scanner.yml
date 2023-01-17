@@ -1,0 +1,7 @@
+sonarqube_scanner:
+  image: sonarsource/sonar-scanner-cli
+  stage: test
+  script:
+    - sonar-scanner
+  allow_failure: true
+
